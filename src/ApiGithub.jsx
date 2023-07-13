@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 function ApiGithub({ repo_url, onData }) {
-  const [DATA, setDATA] = useState("");
   const [url, setUrl] = useState("");
-  const [data, setData] = useState([]);
-
-  // useEffect(() => {
-  //   // Simulating async operation
-  //   const timer = setTimeout(() => {
-  //     console.log("Component One executed");
-  //     onComplete();
-  //   }, 5000);
-
-  //   // Cleanup function
-  //   return () => clearTimeout(timer);
-  // }, [onComplete]);
+  const [DATA, setDATA] = useState("");
 
   useEffect(() => {
     const pattern = /github\.com\/([\w-]+)\/([\w-]+)/;
@@ -34,8 +22,9 @@ function ApiGithub({ repo_url, onData }) {
           const response = await fetch(url);
           if (response.ok) {
             const jsonData = await response.json();
-            setData(jsonData);
             processFiles(jsonData);
+            onData(DATA);
+            console.log(DATA);
           } else {
             throw new Error("Error fetching data from the API.");
           }
@@ -48,13 +37,21 @@ function ApiGithub({ repo_url, onData }) {
     fetchData();
   }, [url]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      onData(DATA);
-    }, 5000);
-  }, [DATA]);
-
   const processFiles = async (files) => {
+    const fetchFileData = async (dataUrl) => {
+      try {
+        const response = await fetch(dataUrl);
+        if (response.ok) {
+          const data = await response.text();
+          return data;
+        } else {
+          throw new Error("Error fetching data from the API.");
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
     const excludedExtensions = [
       "jpg",
       "jpeg",
@@ -75,29 +72,22 @@ function ApiGithub({ repo_url, onData }) {
         !excludedExtensions.includes(fileExtension)
       ) {
         if (item.type === "file") {
-          const data_url = item.download_url;
+          const dataUrl = item.download_url;
           try {
-            const data_file = await fetch(data_url).then((res) => res.text());
+            const data = await fetchFileData(dataUrl);
             setDATA(
               (prevData) =>
-                prevData +
-                `${" "} File path : ${item.path} ` +
-                "   " +
-                data_file
+                prevData + `${" "} File path : ${item.path} ` + "   " + data
             );
-            console.log(DATA);
           } catch (err) {
             console.log(err);
           }
         } else if (item.type === "dir") {
           const subRepoUrl = item.url;
-          fetchDataForDirectory(subRepoUrl);
-          //  await new Promise((resolve) => setTimeout(resolve, 1000));
+          await fetchDataForDirectory(subRepoUrl);
         }
       }
     }
-    // console.log(DATA);
-    // onData(setDATA);
   };
 
   const fetchDataForDirectory = async (directoryUrl) => {
@@ -105,7 +95,7 @@ function ApiGithub({ repo_url, onData }) {
       const response = await fetch(directoryUrl);
       if (response.ok) {
         const jsonData = await response.json();
-        processFiles(jsonData);
+        await processFiles(jsonData);
       } else {
         throw new Error("Error fetching data from the API.");
       }
@@ -114,7 +104,7 @@ function ApiGithub({ repo_url, onData }) {
     }
   };
 
-  return;
+  return null;
 }
 
 export default ApiGithub;

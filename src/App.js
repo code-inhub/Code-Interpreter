@@ -5,24 +5,25 @@ import OpenAI from "./OpenAI";
 
 function App() {
   const url = "https://github.com/code-inhub/Code-Interpreter";
-  const [DATA, setDATA] = useState("");
+  const[DATA, setDATA] = useState('');
   const [showComponentTwo, setShowComponentTwo] = useState(false);
 
   // const handleComponentOneComplete = () => {
   // };
-
-  const handleData = (completeData) => {
-    setDATA(completeData);
+  
+  const handleData=(completeData)=>{
+    setDATA(completeData)
     setShowComponentTwo(true);
-  };
-  console.log(DATA);
-
+  }
+  console.log(DATA)
+  
   return (
     <>
-      <ApiGithub repo_url={url} onData={handleData} />
-      {/* {showComponentTwo && <p>{ DATA }</p> }  */}
-
-      {showComponentTwo && <OpenAI data={DATA} />}
+    
+    <ApiGithub repo_url={url} onData={handleData}   />
+     {/* {showComponentTwo && <p>{ DATA }</p> }  */}
+    
+     {showComponentTwo && <OpenAI data= {DATA} /> }
     </>
   );
 }
