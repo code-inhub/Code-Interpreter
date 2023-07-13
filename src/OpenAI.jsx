@@ -8,12 +8,12 @@ import React, { useState } from "react";
 
 import { Configuration, OpenAIApi } from "openai";
 
-const issue = "Tell me the error if any in the code is present and its summary"
+const issue = "summarize this code for me "
 const OpenAI= ({ data })=> {
     
   const [result,setResult] = useState("");
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: "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",
   });
 
     const openai = new OpenAIApi(configuration);
@@ -23,7 +23,7 @@ const OpenAI= ({ data })=> {
      openai.createChatCompletion({
          model: "gpt-3.5-turbo",
          messages: [
-           { role: "system", content: "You are a code correction, completition, and explaining assistant." },
+           { role: "system", content: "You are a code correction, completition, and explaining assistant. If their was some problem provide the corrected code" },
            {
              role: "user",
              content:`Code: ${data}`

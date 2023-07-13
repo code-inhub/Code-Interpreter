@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 function ApiGithub({ repo_url, onData }) {
-  const [DATA, setDATA] = useState("");
+  // const [DATA, setDATA] = useState("");
   const [url, setUrl] = useState("");
-  const [data, setData] = useState([]);
 
+  let DATA = "";
+
+  // const [data, setData] = useState([]);
+  
   // useEffect(() => {
   //   // Simulating async operation
   //   const timer = setTimeout(() => {
@@ -20,7 +23,7 @@ function ApiGithub({ repo_url, onData }) {
     const pattern = /github\.com\/([\w-]+)\/([\w-]+)/;
     const match = repo_url.match(pattern);
 
-    if (match) {
+    if (match) {  
       const username = match[1];
       const repo = match[2];
       setUrl(`https://api.github.com/repos/${username}/${repo}/contents`);
@@ -28,14 +31,17 @@ function ApiGithub({ repo_url, onData }) {
   }, [repo_url]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = () => {
       try {
         if (url) {
-          const response = await fetch(url);
+          const response = fetch(url);
           if (response.ok) {
-            const jsonData = await response.json();
-            setData(jsonData);
+            const jsonData =  response.json();
+            // setData(jsonData);
             processFiles(jsonData);
+
+            onData(DATA);
+            console.log(DATA)
           } else {
             throw new Error("Error fetching data from the API.");
           }
@@ -48,13 +54,13 @@ function ApiGithub({ repo_url, onData }) {
     fetchData();
   }, [url]);
 
-  useEffect(() => {
-    setTimeout(() => {
-      onData(DATA);
-    }, 5000);
-  }, [DATA]);
+  // useEffect(() => {
+  //   setTimeout(() => {
+      
+  //   }, 5000);
+  // }, [DATA]);
 
-  const processFiles = async (files) => {
+  const processFiles =  (files) => {
     const excludedExtensions = [
       "jpg",
       "jpeg",
@@ -77,15 +83,20 @@ function ApiGithub({ repo_url, onData }) {
         if (item.type === "file") {
           const data_url = item.download_url;
           try {
-            const data_file = await fetch(data_url).then((res) => res.text());
-            setDATA(
-              (prevData) =>
-                prevData +
-                `${" "} File path : ${item.path} ` +
-                "   " +
-                data_file
-            );
-            console.log(DATA);
+            console.log(data_url);
+            const data_file =  fetch(data_url).then((res) => res.text());
+            // setDATA(
+            //   (prevData) =>
+            //     prevData +
+            //     `${" "} File path : ${item.path} ` +
+            //     "   " +
+            //     data_file
+            // );
+              console.log(data_file);
+              //  DATA+=` File path : ${item.path}  ${data_file}`;
+            
+
+            // console.log(DATA);
           } catch (err) {
             console.log(err);
           }
@@ -100,11 +111,11 @@ function ApiGithub({ repo_url, onData }) {
     // onData(setDATA);
   };
 
-  const fetchDataForDirectory = async (directoryUrl) => {
+  const fetchDataForDirectory = (directoryUrl) => {
     try {
-      const response = await fetch(directoryUrl);
+      const response =  fetch(directoryUrl);
       if (response.ok) {
-        const jsonData = await response.json();
+        const jsonData =  response.json();
         processFiles(jsonData);
       } else {
         throw new Error("Error fetching data from the API.");
