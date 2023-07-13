@@ -5,46 +5,54 @@ import React, { useState } from "react";
 
 // const api_key = process.env.api_key;
 
-
 import { Configuration, OpenAIApi } from "openai";
 
-const issue = "Tell me the error if any in the code is present and its summary"
-const OpenAI= ({ data })=> {
-    
-  const [result,setResult] = useState("");
+const issue = "Tell me the error if any in the code is present and its summary";
+const OpenAI = ({ data }) => {
+  const [result, setResult] = useState("");
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: "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",
   });
 
-    const openai = new OpenAIApi(configuration);
-    
-    // const chat_completion = 
-    // await
-     openai.createChatCompletion({
-         model: "gpt-3.5-turbo",
-         messages: [
-           { role: "system", content: "You are a code correction, completition, and explaining assistant." },
-           {
-             role: "user",
-             content:`Code: ${data}`
-           },
-           {
-             role: "user",
-             content:
-               `Problem Description: ${issue}`,
-           },
-         ],
-       })
-       .then((response) => {
-        setResult( response.data.choices[0].message.content);
-         console.log(response.data.choices[0].message.content );
-         // console.log(chat_completion);
-       }).catch((err)=>{ console.log(err);})  ;
+  const openai = new OpenAIApi(configuration);
 
-  return <div>
-    {/* {data} <br/> */}
-    {/* {chat_completion} */}
-    {result}
-    </div>;
-}
+  // const chat_completion =
+  // await
+  openai
+    .createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "system",
+          content:
+            "You are a code correction, completition, and explaining assistant.",
+        },
+        {
+          role: "user",
+          content: `Code: ${data}`,
+        },
+        {
+          role: "user",
+          content: `Problem Description: ${issue}`,
+        },
+      ],
+    })
+    .then((response) => {
+      setResult(response.data.choices[0].message.content);
+      console.log(response.data.choices[0].message.content);
+      
+      // console.log(chat_completion);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  return (
+    <div>
+      {/* {data} <br/> */}
+      {/* {chat_completion} */}
+      {result}
+    </div>
+  );
+};
 export default OpenAI;
