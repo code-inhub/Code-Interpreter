@@ -13,7 +13,7 @@ const OpenAI= ({ data })=> {
     
   const [result,setResult] = useState("");
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: "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",
   });
 
     const openai = new OpenAIApi(configuration);

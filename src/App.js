@@ -13,17 +13,17 @@ function App() {
   
   const handleData=(completeData)=>{
     setDATA(completeData)
-    setShowComponentTwo(true);
+    // setShowComponentTwo(true);
     console.log(DATA)
   }
   
   return (
     <>
-    
-    <ApiGithub repo_url={url} onData={handleData}   />
-     {showComponentTwo && <p>{ DATA }</p> } 
-    
-     {showComponentTwo && <OpenAI data= {DATA} /> }
+      <ApiGithub repo_url={url} onData={handleData} />
+
+      <h1> {DATA} </h1>
+
+      {showComponentTwo && <OpenAI data={DATA} />}
     </>
   );
 }
