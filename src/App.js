@@ -21,7 +21,7 @@ function App() {
     <>
       <ApiGithub repo_url={url} onData={handleData} />
 
-      <h1> {DATA} </h1>
+       {DATA} 
 
       {showComponentTwo && <OpenAI data={DATA} />}
     </>

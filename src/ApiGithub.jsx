@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 function ApiGithub({ repo_url, onData }) {
   const [url, setUrl] = useState("");
-  let DATA = "";
+  const [DATA, setDATA] = useState("");
 
   useEffect(() => {
     const pattern = /github\.com\/([\w-]+)\/([\w-]+)/;
@@ -23,8 +23,6 @@ function ApiGithub({ repo_url, onData }) {
           if (response.ok) {
             const jsonData = await response.json();
             processFiles(jsonData);
-            console.log(DATA);
-            console.log("DATA");
             onData(DATA);
             console.log(DATA);
           } else {
@@ -54,21 +52,42 @@ function ApiGithub({ repo_url, onData }) {
       }
     };
 
-    const filePromises = files.map((item) => {
-      if (item.type === "file") {
-        const dataUrl = item.download_url;
-        return fetchFileData(dataUrl);
-      } else if (item.type === "dir") {
-        const subRepoUrl = item.url;
-        return fetchDataForDirectory(subRepoUrl);
+    const excludedExtensions = [
+      "jpg",
+      "jpeg",
+      "png",
+      "gfg",
+      "gif",
+      "ico",
+      "svg",
+      "md",
+    ];
+
+    for (const item of files) {
+      const fileExtension = item.name.split(".").pop().toLowerCase();
+
+      if (
+        item.name !== ".gitignore" &&
+        item.name !== "package-lock.json" &&
+        !excludedExtensions.includes(fileExtension)
+      ) {
+        if (item.type === "file") {
+          const dataUrl = item.download_url;
+          try {
+            const data = await fetchFileData(dataUrl);
+            setDATA(
+              (prevData) =>
+                prevData + `${" "} File path : ${item.path} ` + "   " + data
+            );
+          } catch (err) {
+            console.log(err);
+          }
+        } else if (item.type === "dir") {
+          const subRepoUrl = item.url;
+          await fetchDataForDirectory(subRepoUrl);
+        }
       }
-      return null;
-    });
-
-    const fileData = await Promise.all(filePromises);
-
-    const completeData = fileData.join("");
-    DATA += completeData;
+    }
   };
 
   const fetchDataForDirectory = async (directoryUrl) => {
@@ -89,5 +108,3 @@ function ApiGithub({ repo_url, onData }) {
 }
 
 export default ApiGithub;
-
-
