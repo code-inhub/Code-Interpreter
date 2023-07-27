@@ -1,33 +1,24 @@
-import React, { useState } from "react";
-import ApiGithub from "./ApiGithub";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import OpenAI from "./OpenAI";
+import { api } from "./api";
 
 function App() {
   const url = "https://github.com/code-inhub/Code-Interpreter";
-  const[DATA, setDATA] = useState('');
-  const [showComponentTwo, setShowComponentTwo] = useState(false);
+  const [DATA, setDATA] = useState("");
 
-  // const handleComponentOneComplete = () => {
-  // };
-  
-  const handleData=(completeData)=>{
-    setDATA(completeData)
-    setShowComponentTwo(true);
-    console.log("this is data: ")
-    console.log(completeData)
-  }
-  console.log(DATA)
-  
-  return (
-    <>
-    
-    <ApiGithub repo_url={url} onData={handleData}   />
-     {/* {showComponentTwo && <p>{ DATA }</p> }  */}
-    
-     {showComponentTwo && <OpenAI data= {DATA} /> }
-    </>
-  );
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await api(url);
+        // console.log(res);
+        setDATA(res);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, []);
+return <>{DATA && DATA.length && <OpenAI data={DATA} />}</>;
 }
 
 export default App;

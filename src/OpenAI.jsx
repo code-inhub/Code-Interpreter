@@ -1,25 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import {config} from  "dotenv";
 // [Describe the issue or problem you are experiencing with the code. Be as specific as possible.]"
 // config();
 
 // const api_key = process.env.api_key;
-
+import Landing from "./frontend/Landing"";
 import { Configuration, OpenAIApi } from "openai";
 
 const issue = "Tell me the error if any in the code is present and its summary";
+
+
 const OpenAI = ({ data }) => {
   const [result, setResult] = useState("");
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: "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",
   });
 
   const openai = new OpenAIApi(configuration);
 
   // const chat_completion =
   // await
-  openai
-    .createChatCompletion({
+  useEffect(() => {
+  openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [
         {
@@ -46,12 +48,11 @@ const OpenAI = ({ data }) => {
     .catch((err) => {
       console.log(err);
     });
-
+  },[]);
   return (
     <div>
-      {/* {data} <br/> */}
-      {/* {chat_completion} */}
-      {result}
+      
+      {result && <Landing />}
     </div>
   );
 };
