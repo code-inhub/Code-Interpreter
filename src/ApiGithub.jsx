@@ -24,6 +24,7 @@ function ApiGithub({ repo_url, onData }) {
             const jsonData = await response.json();
             processFiles(jsonData);
             onData(DATA);
+            console.log("try data");
             console.log(DATA);
           } else {
             throw new Error("Error fetching data from the API.");
@@ -79,6 +80,7 @@ function ApiGithub({ repo_url, onData }) {
               (prevData) =>
                 prevData + `${" "} File path : ${item.path} ` + "   " + data
             );
+            // console.log(DATA);
           } catch (err) {
             console.log(err);
           }

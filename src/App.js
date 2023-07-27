@@ -14,6 +14,8 @@ function App() {
   const handleData=(completeData)=>{
     setDATA(completeData)
     setShowComponentTwo(true);
+    console.log("this is data: ")
+    console.log(completeData)
   }
   console.log(DATA)
   

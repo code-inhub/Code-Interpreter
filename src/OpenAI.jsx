@@ -11,7 +11,7 @@ const issue = "Tell me the error if any in the code is present and its summary";
 const OpenAI = ({ data }) => {
   const [result, setResult] = useState("");
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: "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",
   });
 
   const openai = new OpenAIApi(configuration);
@@ -40,7 +40,7 @@ const OpenAI = ({ data }) => {
     .then((response) => {
       setResult(response.data.choices[0].message.content);
       console.log(response.data.choices[0].message.content);
-      
+      console.log(response.data.choices[0].message.content);
       // console.log(chat_completion);
     })
     .catch((err) => {
