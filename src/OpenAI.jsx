@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 // import dotenv from "dotenv";
 // dotenv.config();
 
-const api_key ="" ;
+// const api_key = "";
 import Landing from "./frontend/Landing.jsx";
 import { Configuration, OpenAIApi } from "openai";
 
@@ -14,7 +14,7 @@ const issue = "Tell me the error if any in the code is present and its summary";
 const OpenAI = ({ data }) => {
   const [result, setResult] = useState("");
   const configuration = new Configuration({
-    apiKey: api_key,
+    apiKey: "",
   });
 
   const openai = new OpenAIApi(configuration);
