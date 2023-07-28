@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import OpenAI from "./OpenAI";
 import { api } from "./api";
+import Landing from "./frontend/Landing.jsx";
 
 function App() {
   const url = "https://github.com/code-inhub/Code-Interpreter";
@@ -18,7 +19,15 @@ function App() {
       }
     })();
   }, []);
-return <>{DATA && DATA.length && <OpenAI data={DATA} />}</>;
+  return (
+    <>
+      {/* <h1>Code Interpreter</h1> */}
+
+      <Landing />
+
+      {/* {DATA && DATA.length && <OpenAI data={DATA} />} */}
+    </>
+  );
 }
 
 export default App;

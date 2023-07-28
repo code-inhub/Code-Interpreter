@@ -4,11 +4,10 @@ import React, { useEffect, useState } from "react";
 // config();
 
 // const api_key = process.env.api_key;
-import Landing from "./frontend/Landing"";
+import Landing from "./frontend/Landing.jsx";
 import { Configuration, OpenAIApi } from "openai";
 
 const issue = "Tell me the error if any in the code is present and its summary";
-
 
 const OpenAI = ({ data }) => {
   const [result, setResult] = useState("");
@@ -21,39 +20,35 @@ const OpenAI = ({ data }) => {
   // const chat_completion =
   // await
   useEffect(() => {
-  openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content:
-            "You are a code correction, completition, and explaining assistant.",
-        },
-        {
-          role: "user",
-          content: `Code: ${data}`,
-        },
-        {
-          role: "user",
-          content: `Problem Description: ${issue}`,
-        },
-      ],
-    })
-    .then((response) => {
-      setResult(response.data.choices[0].message.content);
-      console.log(response.data.choices[0].message.content);
-      console.log(response.data.choices[0].message.content);
-      // console.log(chat_completion);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  },[]);
-  return (
-    <div>
-      
-      {result && <Landing />}
-    </div>
-  );
+    openai
+      .createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are a code correction, completition, and explaining assistant.",
+          },
+          {
+            role: "user",
+            content: `Code: ${data}`,
+          },
+          {
+            role: "user",
+            content: `Problem Description: ${issue}`,
+          },
+        ],
+      })
+      .then((response) => {
+        setResult(response.data.choices[0].message.content);
+        console.log(response.data.choices[0].message.content);
+        console.log(response.data.choices[0].message.content);
+        // console.log(chat_completion);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  return <div>{result && <Landing />}</div>;
 };
 export default OpenAI;
