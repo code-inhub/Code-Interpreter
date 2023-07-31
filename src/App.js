@@ -1,31 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./App.css";
 import OpenAI from "./OpenAI";
 import { api } from "./api";
 import Landing from "./frontend/Landing.jsx";
+import { useAppContext } from "./frontend/Context/AppProvider";
 
 function App() {
-  const url = "https://github.com/code-inhub/Code-Interpreter";
-  const [DATA, setDATA] = useState("");
+  const { url, setData, DATA, ClickButton } = useAppContext();
+  // const url = "https://github.com/code-inhub/Code-Interpreter";
 
   useEffect(() => {
     (async () => {
       try {
+        console.log("getting url in effet");
+        console.log(url);
         const res = await api(url);
         // console.log(res);
-        setDATA(res);
+        setData(res);
+        console.log(ClickButton);
       } catch (err) {
         console.log(err);
       }
     })();
-  }, []);
+  }, [ClickButton]);
   return (
     <>
-      {/* <h1>Code Interpreter</h1> */}
-
       <Landing />
 
-      {/* {DATA && DATA.length && <OpenAI data={DATA} />} */}
+      {DATA && DATA.length && <OpenAI />}
     </>
   );
 }

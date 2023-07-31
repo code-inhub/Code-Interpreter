@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useAppContext } from "./frontend/Context/AppProvider.js";
+import Landing from "./frontend/Landing.jsx";
+import { Configuration, OpenAIApi } from "openai";
 // import {config} from  "dotenv";
 // [Describe the issue or problem you are experiencing with the code. Be as specific as possible.]"
 // config();
@@ -6,15 +9,12 @@ import React, { useEffect, useState } from "react";
 // dotenv.config();
 
 // const api_key = "";
-import Landing from "./frontend/Landing.jsx";
-import { Configuration, OpenAIApi } from "openai";
 
-const issue = "Tell me the error if any in the code is present and its summary";
 
-const OpenAI = ({ data }) => {
-  const [result, setResult] = useState("");
+const OpenAI = () => {
+  const { setResult, result, DATA ,ClickButton,issue} = useAppContext();
   const configuration = new Configuration({
-    apiKey: "",
+    apiKey: "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",
   });
 
   const openai = new OpenAIApi(configuration);
@@ -29,11 +29,11 @@ const OpenAI = ({ data }) => {
           {
             role: "system",
             content:
-              "You are a code correction, completition, and explaining assistant.",
+              "You are a code correction, completition, and explaining assistant. You need to provide the user appropiate and correct result after understanding its code and if neede provide the necessary code. You will be provided with all the file codes and their paths.",
           },
           {
             role: "user",
-            content: `Code: ${data}`,
+            content: `Code: ${DATA}`,
           },
           {
             role: "user",
@@ -44,13 +44,11 @@ const OpenAI = ({ data }) => {
       .then((response) => {
         setResult(response.data.choices[0].message.content);
         console.log(response.data.choices[0].message.content);
-        console.log(response.data.choices[0].message.content);
-        // console.log(chat_completion);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [ClickButton]);
   return <div>{result && <Landing />}</div>;
 };
 export default OpenAI;
