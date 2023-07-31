@@ -2,25 +2,23 @@ import React, { useEffect } from "react";
 import { useAppContext } from "./frontend/Context/AppProvider.js";
 import Landing from "./frontend/Landing.jsx";
 import { Configuration, OpenAIApi } from "openai";
-// import {config} from  "dotenv";
-// [Describe the issue or problem you are experiencing with the code. Be as specific as possible.]"
-// config();
 // import dotenv from "dotenv";
 // dotenv.config();
-
-// const api_key = "";
-
+ 
+// [Describe the issue or problem you are experiencing with the code. Be as specific as possible.]"
+// require("dotenv").config();
 
 const OpenAI = () => {
-  const { setResult, result, DATA ,ClickButton,issue} = useAppContext();
-  const configuration = new Configuration({
-    apiKey: "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",
-  });
 
+  const API_KEY ="sk-"+ process.env.REACT_APP_API_KEY;
+
+  const { setResult, result, DATA, ClickButton, issue } = useAppContext();
+  const configuration = new Configuration({
+    apiKey: API_KEY,
+  });
+  console.log(API_KEY);
   const openai = new OpenAIApi(configuration);
 
-  // const chat_completion =
-  // await
   useEffect(() => {
     openai
       .createChatCompletion({
@@ -29,7 +27,7 @@ const OpenAI = () => {
           {
             role: "system",
             content:
-              "You are a code correction, completition, and explaining assistant. You need to provide the user appropiate and correct result after understanding its code and if neede provide the necessary code. You will be provided with all the file codes and their paths.",
+              "You are a code correction, completition, and explaining assistant. You need to provide the user appropiate and correct result after understanding its code and if neede provide the necessary code. You will be provided with all the file codes and their paths. Also you have to send all the response at once.",
           },
           {
             role: "user",
