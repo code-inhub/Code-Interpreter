@@ -10,7 +10,7 @@ function Landing() {;
     <>
       <div className="bg-gray-300 min-h-screen flex flex-col items-center">
         {/* <Navbar /> */}
-        <header className="text-2xl mx-">Code Interpreter</header>
+        <header className="text-4xl mx-">Code Interpreter</header>
         
           <Searchbar  />
         
