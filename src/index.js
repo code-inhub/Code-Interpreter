@@ -8,7 +8,7 @@ import { AppProvider } from './frontend/Context/AppProvider';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AppProvider>
-  <App />
+  <App />;
   </AppProvider>
 );
 

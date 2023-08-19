@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import OpenAI from "./OpenAI";
 import { api } from "./api";
@@ -6,7 +6,6 @@ import Landing from "./frontend/Landing.jsx";
 import { useAppContext } from "./frontend/Context/AppProvider";
 
 function App() {
-  
   const API_KEY = process.env.REACT_APP_API_KEY;
   const { url, setData, DATA, ClickButton } = useAppContext();
   // const url = "https://github.com/code-inhub/Code-Interpreter";
