@@ -23,7 +23,6 @@ const processFiles = async (files) => {
     "svg",
     "md",
     "txt",
-    "json",
     "css",
   ];
 

@@ -2,15 +2,13 @@ import React, { useEffect } from "react";
 import { useAppContext } from "./frontend/Context/AppProvider.js";
 // import Landing from "./frontend/Landing.jsx";
 import { Configuration, OpenAIApi } from "openai";
-// import dotenv from "dotenv";
-// dotenv.config();
- 
+
 // [Describe the issue or problem you are experiencing with the code. Be as specific as possible.]"
-// require("dotenv").config();
+
 
 const OpenAI = () => {
-
-  const API_KEY ="sk-"+ process.env.REACT_APP_API_KEY;
+ const val= process.env.REACT_APP_API_KEY;
+  const API_KEY ="sk-"+ val;
 
   const { setResult, result, DATA, ClickButton, issue } = useAppContext();
   const configuration = new Configuration({
