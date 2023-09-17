@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Code Interpreter
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Code Assistant project! This tool helps users get code corrections, completions, and explanations for their code. Simply provide the repository github link and problem description, and the Code Assistant will generate a helpful response.
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+To use the Code Assistant, follow these steps:
 
-### `npm start`
+1. Clone this repository to your local machine.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+   ```bash
+   git clone https://github.com/your-username/code-assistant.git
+    ````
+2. Install the necessary dependencies using npm.
+   ````bash
+   npm install
+    ````
+3. Set up your API key by creating a .env file in the project root directory and adding your OpenAI API key.
+````bash
+REACT_APP_API_KEY=your-api-key-here
+````
+4. Start the development server.
+````bash
+npm start
+````
+5. Access the Code Assistant frontend at http://localhost:3000 in your web browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## How It Works
+The Code Assistant uses the OpenAI GPT-3.5 Turbo model to understand and provide responses to code and problem descriptions. When you submit a request, it sends the code and description to the OpenAI API and displays the response on the landing page.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Usage
+1. Enter your code in the input field.
+2. Describe the problem you're facing in the provided text area.
+3. Click the "Submit" button.
+4. The Code Assistant will provide a helpful response, including code corrections and explanations.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Scope
+The current version of the Code Assistant utilizes the OpenAI GPT-3.5 Turbo model, which may incur costs for API usage beyond the free tier. However, we are actively working on expanding the project's capabilities:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Fine-Tuned Model: We are in the process of developing our own fine-tuned language model specifically designed for code assistance. This model will provide improved accuracy and efficiency while reducing dependency on external APIs.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Future Aspects
+I have ambitious plans for the future of the Code Assistant:
 
-### `npm run eject`
+Enhanced Language Support: I aim to support multiple programming languages and technologies, catering to a broader audience of developers.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Integration with IDEs: We plan to develop plugins and extensions that seamlessly integrate the Code Assistant into popular integrated development environments (IDEs).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Screenshots
+A visual of its results
+![Screenshot 2023-09-17 181646](https://github.com/code-inhub/Code-Interpreter/assets/95998892/6cc810f5-f9e5-4820-885c-87d797c5016c)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![image](https://github.com/code-inhub/Code-Interpreter/assets/95998892/30a3ce01-3adc-4f01-b2d8-2f8d1c72bf7a)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
