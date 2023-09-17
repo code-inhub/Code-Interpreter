@@ -49,25 +49,7 @@ Enhanced Language Support: I aim to support multiple programming languages and t
 Integration with IDEs: We plan to develop plugins and extensions that seamlessly integrate the Code Assistant into popular integrated development environments (IDEs).
 
 ## Screenshots
+A visual of its result
 
-1. **Login with Google OAuth:**
+![Screenshot 2023-09-17 181646](https://github.com/code-inhub/Code-Interpreter/assets/95998892/f01e909d-4309-49f2-b71c-a78ecd4b2d41)
 
-   ![Screenshot 1](https://github.com/code-inhub/MeChatSocketIO/assets/95998892/6da20f76-d21c-4cf7-9340-c0bacbebc94f)
-   
-   ![Screenshot 2](https://github.com/code-inhub/MeChatSocketIO/assets/95998892/39e15413-5ae9-4ee7-b277-6fced8dba9d6)
-
-2. **Chat Interface:**
-
-   ![Screenshot 3](https://github.com/code-inhub/MeChatSocketIO/assets/95998892/0d304e31-d0f3-4a77-9dd9-c1c98dfbf872)
-
-3. **User Profile:**
-
-   ![Screenshot 4](https://github.com/code-inhub/MeChatSocketIO/assets/95998892/8e089ecb-89c1-487e-9ec6-2acf73added0)
-
-4. **Message History:**
-
-   ![Screenshot 5](https://github.com/code-inhub/MeChatSocketIO/assets/95998892/f902aa85-a9c5-4173-8a27-dcd05a7f68fe)
-
-5. **Online Status Indicators(at the top-middle):**
-   
-   ![Online Status](https://github.com/code-inhub/MeChatSocketIO/assets/95998892/ab2449a8-8f6d-4454-890e-85a65c05ffe2)
