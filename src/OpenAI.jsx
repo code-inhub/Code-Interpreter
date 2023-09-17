@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useAppContext } from "./frontend/Context/AppProvider.js";
-import Landing from "./frontend/Landing.jsx";
+// import Landing from "./frontend/Landing.jsx";
 import { Configuration, OpenAIApi } from "openai";
 // import dotenv from "dotenv";
 // dotenv.config();
@@ -47,6 +47,6 @@ const OpenAI = () => {
         console.log(err);
       });
   }, [ClickButton]);
-  return <div>{result && <Landing />}</div>;
+  // return <div>{result && <Landing />}</div>;
 };
 export default OpenAI;

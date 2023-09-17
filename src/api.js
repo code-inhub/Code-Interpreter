@@ -8,7 +8,7 @@ const processFiles = async (files) => {
       } else {
         throw new Error("Error fetching data from the API.");
       }
-    } catch (err) {
+    } catch (err) { 
       console.log(err);
     }
   };
@@ -22,6 +22,9 @@ const processFiles = async (files) => {
     "ico",
     "svg",
     "md",
+    "txt",
+    "json",
+    "css",
   ];
 
   let allData = "";
