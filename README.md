@@ -49,7 +49,8 @@ Enhanced Language Support: I aim to support multiple programming languages and t
 Integration with IDEs: We plan to develop plugins and extensions that seamlessly integrate the Code Assistant into popular integrated development environments (IDEs).
 
 ## Screenshots
-A visual of its result
+A visual of its results
 ![Screenshot 2023-09-17 181646](https://github.com/code-inhub/Code-Interpreter/assets/95998892/6cc810f5-f9e5-4820-885c-87d797c5016c)
 
+![image](https://github.com/code-inhub/Code-Interpreter/assets/95998892/30a3ce01-3adc-4f01-b2d8-2f8d1c72bf7a)
 
