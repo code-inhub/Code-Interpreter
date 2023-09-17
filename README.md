@@ -50,6 +50,6 @@ Integration with IDEs: We plan to develop plugins and extensions that seamlessly
 
 ## Screenshots
 A visual of its result
+![Screenshot 2023-09-17 181646](https://github.com/code-inhub/Code-Interpreter/assets/95998892/6cc810f5-f9e5-4820-885c-87d797c5016c)
 
-![Screenshot 2023-09-17 181646](https://github.com/code-inhub/Code-Interpreter/assets/95998892/f01e909d-4309-49f2-b71c-a78ecd4b2d41)
 
