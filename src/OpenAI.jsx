@@ -12,6 +12,7 @@ const OpenAI = () => {
 
   const { setResult, result, DATA, ClickButton, issue } = useAppContext();
   const configuration = new Configuration({
+    organization: "org-G9nPL7iiS4o78lnLUvQDqtT1",
     apiKey: API_KEY,
   });
   console.log(API_KEY);
