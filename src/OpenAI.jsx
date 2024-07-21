@@ -3,17 +3,18 @@ import { useAppContext } from "./frontend/Context/AppProvider.js";
 // import Landing from "./frontend/Landing.jsx";
 import { Configuration, OpenAIApi } from "openai";
 
-const API_KEY = process.env.API_KEY;
-
+const API_KEY = process.env.REACT_APP_API_KEY;
+console.log(API_KEY);
+ 
 const configuration = new Configuration({
-  apiKey: API_KEY,
+  apiKey: `${API_KEY}`,
 });
 const openai = new OpenAIApi(configuration);
 
 
 const OpenAIResult = () => {
   const { setResult, DATA, ClickButton, issue } = useAppContext();
-  // console.log(API_KEY); 
+  console.log(API_KEY); 
 
   useEffect(() => {
     openai.createChatCompletion({
