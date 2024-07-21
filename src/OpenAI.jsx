@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import { useAppContext } from "./frontend/Context/AppProvider.js";
 // import Landing from "./frontend/Landing.jsx";
 import { Configuration, OpenAIApi } from "openai";

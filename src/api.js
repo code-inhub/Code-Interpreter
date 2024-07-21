@@ -39,7 +39,7 @@ const processFiles = async (files) => {
         const dataUrl = item.download_url;
         try {
           const data = await fetchFileData(dataUrl);
-          allData += `${" "} File path : ${item.path} ` + "   " + data;
+          allData += ` File path : ${item.path}    ${data}`;
         } catch (err) {
           console.log(err);
         }
