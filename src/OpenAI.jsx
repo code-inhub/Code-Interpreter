@@ -12,7 +12,7 @@ const openai = new OpenAIApi(configuration);
 
 
 const OpenAIResult = () => {
-  const { setResult, result, DATA, ClickButton, issue } = useAppContext();
+  const { setResult, DATA, ClickButton, issue } = useAppContext();
   // console.log(API_KEY); 
 
   useEffect(() => {
