@@ -3,24 +3,20 @@ import { useAppContext } from "./frontend/Context/AppProvider.js";
 // import Landing from "./frontend/Landing.jsx";
 import { Configuration, OpenAIApi } from "openai";
 
-// [Describe the issue or problem you are experiencing with the code. Be as specific as possible.]"
+const API_KEY = process.env.API_KEY;
+
+const configuration = new Configuration({
+  apiKey: API_KEY,
+});
+const openai = new OpenAIApi(configuration);
 
 
-const OpenAI = () => {
- const val= process.env.REACT_APP_API_KEY;
-  const API_KEY ="sk-"+ val;
-
+const OpenAIResult = () => {
   const { setResult, result, DATA, ClickButton, issue } = useAppContext();
-  const configuration = new Configuration({
-    organization: "org-G9nPL7iiS4o78lnLUvQDqtT1",
-    apiKey: API_KEY,
-  });
-  console.log(API_KEY);
-  const openai = new OpenAIApi(configuration);
+  // console.log(API_KEY); 
 
   useEffect(() => {
-    openai
-      .createChatCompletion({
+    openai.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: [
           {
@@ -30,22 +26,21 @@ const OpenAI = () => {
           },
           {
             role: "user",
-            content: `Code: ${DATA}`,
+            content: `Problem Description: ${issue}`,
           },
           {
             role: "user",
-            content: `Problem Description: ${issue}`,
+            content: `Code: ${DATA}`,
           },
         ],
       })
       .then((response) => {
+        console.log(response);
         setResult(response.data.choices[0].message.content);
-        console.log(response.data.choices[0].message.content);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [ClickButton]);
-  // return <div>{result && <Landing />}</div>;
 };
-export default OpenAI;
+export default OpenAIResult;

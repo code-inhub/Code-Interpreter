@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import OpenAI from "./OpenAI";
+import OpenAIResult from "./OpenAI";
 import { api } from "./api";
 import Landing from "./frontend/Landing.jsx";
 import { useAppContext } from "./frontend/Context/AppProvider";
@@ -29,7 +29,7 @@ function App() {
     <>
       <Landing />
 
-      {DATA && DATA.length && <OpenAI />}
+      {DATA && DATA.length && <OpenAIResult />}
     </>
   );
 }
